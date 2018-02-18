@@ -1,0 +1,13 @@
+<% if user && bar %>
+  <nav>
+    <button class="nav-item">
+      <%= link_to "Bar", user_bar_path(user, bar), class: "nav-link" %>
+    </button>
+    <button class="nav-item">
+      <%= link_to "Recipes", user_bar_recipes_path(user, bar), class: "nav-link" %>
+    </button>
+    <button class="nav-item">
+      <%= link_to "Ingredients", user_bar_ingredients_path(user,bar), class: "nav-link" %>
+    </button>
+  </nav>
+<% end -%>

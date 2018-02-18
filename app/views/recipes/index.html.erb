@@ -1,0 +1,24 @@
+<main>
+  <p id="notice"><%= notice %></p>
+  <header>
+    <h1>Recipes</h1>
+    <button class="btn">
+      <%= link_to 'New Recipe', new_user_bar_recipe_path(@user, @bar, @recipe) %>      
+    </button>
+  </header>
+  <div class="container flex-container">
+    <% @recipes.each do |recipe| %>
+      <section class="flex-item">
+        <h3><%= recipe.name %></h3>
+        <figure>
+          <%= image_tag("me", size: "200x200") %>
+          <figcaption>
+            <%= link_to 'Show', user_bar_recipe_path(@user, @bar, recipe) %>
+            <%= link_to 'Edit', edit_user_bar_recipe_path(@user, @bar, recipe) %>
+            <%= link_to 'Destroy', user_bar_recipe_path(@user, @bar, recipe), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </figcaption>
+        </figure>
+      </section>
+    <% end -%>
+  </div>
+</main>

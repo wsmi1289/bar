@@ -1,0 +1,30 @@
+<main>
+  <p id="notice"><%= notice %></p>
+  <header>
+    <h1><%= @bar.name %></h1>
+    <button class="btn">
+      <%= link_to 'Manage Bar Stock', user_bar_ingredients_path(@user,@bar) %>
+    </button>
+    <button class="btn">
+      <%= link_to 'Edit', edit_user_bar_path(@user, @bar) %>
+    </button>
+    <button class="btn">
+      <%= link_to 'Back', user_bars_path %>
+    </button>
+  </header>
+  <div class="container flex-container">
+    <% @bar.ingredients.each do |ingredient| %>
+      <% if ingredient.in_stock %>
+        <section class="flex-item">
+          <h3><%= ingredient.name %></h3>
+          <figure>
+            <%= image_tag("me", size: "200x200") %>
+            <figcaption>
+              <%= ingredient.description %>
+            </figcaption>
+          </figure>
+        </section>
+      <% end -%>
+    <% end -%>
+  </div>
+</main>

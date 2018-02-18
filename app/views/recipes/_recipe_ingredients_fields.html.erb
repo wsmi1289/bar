@@ -1,0 +1,13 @@
+<div class="ingredient-container">
+  <div class="field">
+    <%= f.label :ingredient %>
+    <%= f.collection_select :ingredient_id, Ingredient.all, :id, :ingredient_name, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quantity %>
+    <%= f.text_field :quantity, id: :recipe_ingredient_quantity %>
+  </div>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "[Remove Task]", '#', onClick: "removeField(this); return false;" %>
+</div>

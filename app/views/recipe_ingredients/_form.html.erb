@@ -1,0 +1,32 @@
+<%= form_for([user, bar, recipe_ingredient]) do |form| %>
+  <% if recipe_ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe_ingredient.errors.count, "error") %> prohibited this recipe_ingredient from being saved:</h2>
+
+      <ul>
+      <% recipe_ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ingredient %>
+    <%= form.collection_select :ingredient_id, Ingredient.all, :id, :ingredient_name, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity, id: :recipe_ingredient_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recipe %>
+    <%= form.collection_select :recipe_id, Recipe.all, :id, :recipe_name, prompt: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

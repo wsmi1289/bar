@@ -1,0 +1,6 @@
+<h1>Editing Bar</h1>
+
+<%= render 'form', bar: @bar, user: @user %>
+
+<%= link_to 'Show', user_bar_path(@user, @bar) %> |
+<%= link_to 'Back', user_bars_path(@user) %>

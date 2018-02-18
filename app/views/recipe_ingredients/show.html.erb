@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @recipe_ingredient.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_user_bar_recipe_ingredient_path(@user, @bar, @recipe_ingredient) %> |
+<%= link_to 'Back', user_bar_recipe_ingredients_path(@user, @bar, @recipe_ingredient) %>
