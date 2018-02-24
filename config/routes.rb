@@ -10,11 +10,10 @@ Rails.application.routes.draw do
       end
       resources :ingredients do
         get 'filter', on: :collection
+        post 'toggle', on: :collection
       end
     end
   end
   root 'users#index'
-  post 'users/:user_id/bars/:bar_id/ingredients/toggle', to: 'ingredients#toggle'
-  # get '/welcome' => "bars#index", as: :user_root
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # post 'users/:user_id/bars/:bar_id/ingredients/toggle', to: 'ingredients#toggle'
 end

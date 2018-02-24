@@ -1,7 +1,7 @@
 class Ingredient < ApplicationRecord
   has_one :type
   belongs_to :bar
-  has_many :recipe_ingredients
+  has_many :recipe_ingredients, dependent: :destroy
   has_many :recipes, through: :recipe_ingredients
   # accepts_nested_attributes_for :type
 

@@ -2,5 +2,5 @@
 
 <%= render 'form', user: @user, bar: @bar, recipe: @recipe %>
 
-<%= link_to 'Show', user_bar_recipe(@user, @bar, @recipe) %> |
+<%= link_to 'Show', user_bar_recipe_path(@user, @bar, @recipe) %> |
 <%= link_to 'Back', user_bar_recipes_path(@user, @bar, @recipe) %>

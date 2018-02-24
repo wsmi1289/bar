@@ -9,7 +9,7 @@
       <%= link_to 'New Ingredient', new_user_bar_ingredient_path(@user) %>
     </button>
     <button class="btn">
-      <%= link_to 'Back', user_bars_path %>
+      <%= link_to 'Back', user_bar_ingredients_path(@user) %>
     </button>
     <button class="btn">
         <label for='type'>Type:<label/>
@@ -18,7 +18,9 @@
         } %>
     </button>
   </header>
-  <% current_page?()
   <div class="container flex-container ingredient-container">
+    <% if current_page?(action: 'index') %>
+        <%= render 'ingredients/ingredient', collection: @ingredients %>
+    <% end -%>
   </div>
 </main>
