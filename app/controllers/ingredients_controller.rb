@@ -27,6 +27,7 @@ class IngredientsController < ApplicationController
     respond_to do |format|
       if @ingredient.update_attribute(:in_stock, params[:in_stock])
         format.html { render :show, notice: 'Ingredient was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @ingredient }
       else
         format.html { render :new }
@@ -99,6 +100,6 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredient).permit(:name, :description, :in_stock, :type_id)
+      params.require(:ingredient).permit(:id,:name, :description, :in_stock, :type_id)
     end
 end

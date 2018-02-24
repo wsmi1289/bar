@@ -1,0 +1,1 @@
+$('figcaption[data-id="<%= @recipe.id %>"]').html("<%= escape_javascript(render partial: 'recipes/ingredients_list', locals: {ingredients: @ingredients}) %>");

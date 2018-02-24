@@ -10,10 +10,10 @@ Rails.application.routes.draw do
       end
       resources :ingredients do
         get 'filter', on: :collection
-        post 'toggle', on: :collection
+        post 'toggle', on: :member
       end
     end
   end
-  root 'users#index'
+  root 'bars#index'
   # post 'users/:user_id/bars/:bar_id/ingredients/toggle', to: 'ingredients#toggle'
 end

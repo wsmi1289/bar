@@ -1,0 +1,25 @@
+<section class="ingredient flex-item">
+  <h3><%= ingredient.name %></h3>
+  <figure>
+    <%= image_tag("me", size: "150x150") %>
+    <figcaption>
+      <p>
+        <%= ingredient.description %>              
+      </p>
+      <%= link_to 'Show', user_bar_ingredient_path(@user, @bar, ingredient) %>
+      <%= link_to 'Edit', edit_user_bar_ingredient_path(@user, @bar, ingredient) %>
+      <%= link_to 'Destroy', user_bar_ingredient_path(@user, @bar, ingredient), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <label for="in_stock">In Stock:
+      <%= check_box_tag('in_stock', "true", ingredient.in_stock, 
+                                        data: {
+                                          remote: true,
+                                          url: url_for(
+                                            controller: 'ingredients',
+                                            action: 'toggle',
+                                            id: ingredient.id),
+                                          method: "POST"
+                                        } ) %>
+      </label>
+    </figcaption>
+  </figure>
+</section>

@@ -1,0 +1,17 @@
+<% @ingredients.each do |rec_ing| %>
+  <p>
+    <strong>Ingredient:</strong>
+    <%= rec_ing.quantity %>
+    <%= rec_ing.ingredient.name %>
+  </p>
+<% end %>
+  <p>
+    <strong>Directions:</strong>
+    <%= @recipe.directions %>
+  </p>
+<button class="btn flex-item">
+  <%= link_to 'Edit', edit_user_bar_recipe_path(@user, @bar, @recipe) %>
+</button>
+<button class="btn flex-item">
+  <%= link_to 'Destroy', user_bar_recipe_path(@user, @bar, @recipe), method: :delete, data: { confirm: 'Are you sure?' } %>
+</button>
