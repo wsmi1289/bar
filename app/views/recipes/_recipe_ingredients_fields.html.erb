@@ -1,7 +1,7 @@
 <div class="ingredient-container">
   <div class="field">
     <%= f.label :ingredient %>
-    <%= f.collection_select :ingredient_id, Ingredient.all, :id, :ingredient_name, prompt: true %>
+    <%= f.collection_select :ingredient_id, Ingredient.where(bar_id: params[:bar_id], in_stock: true), :id, :ingredient_name, prompt: true %>
   </div>
 
   <div class="field">

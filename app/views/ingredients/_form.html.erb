@@ -17,6 +17,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :type %>
+    <%= form.collection_select :type_id, Type.all, :id, :name, prompt: true %>
+  </div>
+
+  <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description, id: :ingredient_description %>
   </div>

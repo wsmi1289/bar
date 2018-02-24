@@ -11,34 +11,14 @@
     <button class="btn">
       <%= link_to 'Back', user_bars_path %>
     </button>
+    <button class="btn">
+        <label for='type'>Type:<label/>
+        <%= collection_select :ingredient, :type_id, Type.all, :id, :name, {prompt: "Filter By:"}, {
+          data: { remote: true, url: filter_user_bar_ingredients_url}
+        } %>
+    </button>
   </header>
-  <div class="container flex-container">
-    <% @ingredients.each do |ingredient| %>
-      <section class="flex-item">
-        <h3><%= ingredient.name %></h3>
-        <figure>
-          <%= image_tag("me", size: "150x150") %>
-          <figcaption>
-            <p>
-              <%= ingredient.description %>              
-            </p>
-            <%= link_to 'Show', user_bar_ingredient_path(@user, @bar, ingredient) %>
-            <%= link_to 'Edit', edit_user_bar_ingredient_path(@user, @bar, ingredient) %>
-            <%= link_to 'Destroy', user_bar_ingredient_path(@user, @bar, ingredient), method: :delete, data: { confirm: 'Are you sure?' } %>
-            <label for="in_stock">In Stock:
-            <%= check_box_tag('in_stock', "true", ingredient.in_stock, 
-                                              data: {
-                                                remote: true,
-                                                url: url_for(
-                                                  controller: 'ingredients',
-                                                  action: 'toggle',
-                                                  id: ingredient.id),
-                                                method: "POST"
-                                              } ) %>
-            </label>
-          </figcaption>
-        </figure>
-      </section>
-    <% end -%>
+  <% current_page?()
+  <div class="container flex-container ingredient-container">
   </div>
 </main>
