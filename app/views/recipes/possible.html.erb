@@ -3,12 +3,11 @@
   <header>
     <h1>Recipes</h1>
     <button class="btn">
-      <%= link_to 'New Recipe', new_user_bar_recipe_path(@user, @bar, @recipe) %>
-      <%= link_to 'What can I make', possible_user_bar_recipe_path(@user, @bar, @recipes) %>
+      <%= link_to 'New Recipe', new_user_bar_recipe_path(@user, @bar, @recipe) %>      
     </button>
   </header>
   <div class="container flex-container">
-    <% Recipe.all.each do |recipe| %>
+    <% possible_recipes.each do |recipe| %>
       <section class="flex-item">
         <h3><%= recipe.name %></h3>
         <figure>

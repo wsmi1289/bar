@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180218043547) do
+ActiveRecord::Schema.define(version: 20180224062256) do
 
   create_table "bars", force: :cascade do |t|
     t.string "name"
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(version: 20180218043547) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "in_stock", default: true
-    t.string "type"
+    t.integer "type_id"
     t.index ["bar_id"], name: "index_ingredients_on_bar_id"
+    t.index ["type_id"], name: "index_ingredients_on_type_id"
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
@@ -47,11 +48,18 @@ ActiveRecord::Schema.define(version: 20180218043547) do
     t.text "directions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "bar_id"
+    t.index ["bar_id"], name: "index_recipes_on_bar_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "user_name"
-    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

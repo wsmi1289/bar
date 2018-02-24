@@ -1,5 +1,7 @@
-<% if user && bar %>
-  <nav>
+<nav>
+<% if user_signed_in? %>
+
+  <% if current_user.bars %>
     <button class="nav-item">
       <%= link_to "Bar", user_bar_path(user, bar), class: "nav-link" %>
     </button>
@@ -7,7 +9,24 @@
       <%= link_to "Recipes", user_bar_recipes_path(user, bar), class: "nav-link" %>
     </button>
     <button class="nav-item">
-      <%= link_to "Ingredients", user_bar_ingredients_path(user,bar), class: "nav-link" %>
+      <%= link_to "Ingredients", user_bar_ingredients_path(user, bar), class: "nav-link" %>
     </button>
-  </nav>
+  <% else %>
+    <button class="nav-item">
+      <%= link_to "New Bar", new_user_bar_path %>
+    </button>
+  <% end -%>
+
+  <button class="nav-item">
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+  </button>
+  
+<% else %>
+  <button class="nav-item">
+    <%= link_to "Sign In", new_user_session_path %>
+  </button>
+  <button class="nav-item">
+    <%= link_to "Register", new_user_registration_path %>
+  </button>
 <% end -%>
+</nav>

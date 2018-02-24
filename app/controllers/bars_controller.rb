@@ -1,11 +1,12 @@
 class BarsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :set_bar, only: [:show, :edit, :update, :destroy]
   before_action :set_user
+  # before_action :owned_bar, except: [:index, :new, :create]
   # GET /bars
   # GET /bars.json
   def index
-    @bars = Bar.all
+    @bars = Bar.where(user_id: current_user.id)
   end
 
   # GET /bars/1
@@ -15,7 +16,7 @@ class BarsController < ApplicationController
 
   # GET /bars/new
   def new
-    @bar = @user.bars.new
+    @bar = current_user.bars.new
   end
 
   # GET /bars/1/edit
@@ -25,7 +26,7 @@ class BarsController < ApplicationController
   # POST /bars
   # POST /bars.json
   def create
-    @bar = @user.bars.new(bar_params)
+    @bar = current_user.bars.new(bar_params)
 
     respond_to do |format|
       if @bar.save
@@ -72,6 +73,13 @@ class BarsController < ApplicationController
       @user = User.find(params[:user_id])
     end
 
+    def owned_bar
+      @bar = Bar.find(params[:id])
+      unless current_user.id == @bar.user_id
+        flash[:alert] = "That bar doesn't belong to you!"
+        redirect_to root_path
+      end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def bar_params
       params.require(:bar).permit(:name)

@@ -1,13 +1,21 @@
 class IngredientsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :set_ingredient, only: [:show, :edit, :toggle, :update, :destroy]
   before_action :set_bar
   before_action :set_user
+  # before_action :owned_by_bar
   # GET /ingredients
   # GET /ingredients.json
   def index
-    @user = User.find(params[:user_id])
-    @ingredients = Ingredient.all
+    @user = current_user
+    @ingredients = Ingredient.where(bar_id: params[:bar_id])
+  end
+
+  def filter
+    @ingredients = Ingredient.where(type_id: ingredient_params[:type_id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /ingredients/1
@@ -89,8 +97,8 @@ class IngredientsController < ApplicationController
     def set_user
       @user = User.find(params[:user_id])
     end
-    # Never trust parameters from the scary internet, only allow the white list through.
+
     def ingredient_params
-      params.require(:ingredient).permit(:name, :description, :in_stock)
+      params.require(:ingredient).permit(:name, :description, :in_stock, :type_id)
     end
 end

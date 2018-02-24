@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
+  resources :types
   devise_for :users
   resources :users do
     resources :bars do
       resources :recipe_ingredients
-      resources :recipes
-      resources :ingredients
-
+      resources :recipes do
+        get 'possible', on: :member
+      end
+      resources :ingredients do
+        get 'filter', on: :collection
+      end
     end
   end
   root 'users#index'

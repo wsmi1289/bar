@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # GET /users
   # GET /users.json
   def index
     if user_signed_in?
-      redirect_to user_bar_url(current_user.id, Bar.first)
+      redirect_to user_bar_url(current_user, current_user.bars.first)
     end
   end
 

@@ -16,5 +16,4 @@ module ApplicationHelper
   def link_to_func(name, js, opts={})
     link_to name, '#', opts.merge({onclick: js})
   end
-
 end
