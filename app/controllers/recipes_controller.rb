@@ -10,12 +10,15 @@ class RecipesController < ApplicationController
   end
 
   def possible
-
+    @ingredients = RecipeIngredient.where(recipe_id: params[:id])
   end
   # GET /recipes/1
   # GET /recipes/1.json
   def show
     @ingredients = RecipeIngredient.where(recipe_id: params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /recipes/new

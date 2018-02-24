@@ -1,21 +1,34 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @recipe.name %>
-</p>
-<% @ingredients.each do |rec_ing| %>
-  <p>
-    <strong>Ingredient:</strong>
-    <%= rec_ing.quantity %>
-    <%= rec_ing.ingredient.name %>
-  </p>
-<% end %>
-
-<p>
-  <strong>Directions:</strong>
-  <%= @recipe.directions %>
-</p>
-
-<%= link_to 'Edit', edit_user_bar_recipe_path(@user, @bar, @recipe) %> |
-<%= link_to 'Back', user_bar_recipes_path(@user, @bar, @recipe) %>
+<main>
+  <p id="notice"><%= notice %></p>
+  <header>
+    <nav class="flex-container">
+      <button class="btn flex-item">
+        <%= link_to 'New Recipe', new_user_bar_recipe_path(@user, @bar, @recipe) %>
+      </button>
+      <button class="btn flex-item">
+        <%= link_to "Recipes", user_bar_recipes_path(@user, @bar) %>
+      </button>
+      <button class="btn flex-item">
+        <%= link_to "Ingredients", user_bar_ingredients_path(@user, @bar) %>
+      </button>
+      <button class="btn flex-item">
+        <%= link_to "Bar", user_bar_path(@user, @bar)%>
+      </button>
+      <button class="btn flex-item">
+        <%= link_to 'Back', user_bar_recipes_path(@user, @bar, @recipe) %>
+      </button>
+    </nav>
+    <h1>Recipes</h1>
+  </header>
+  <div class="container flex-container">
+    <section class="flex-item">
+      <h3><%= @recipe.name %></h3>
+      <figure>
+        <%= image_tag("me", size: "200x200") %>
+        <figcaption>
+          <%= render 'recipes/ingredients_list' %>
+        </figcaption>
+      </figure>
+    </section>
+  </div>
+</main>
