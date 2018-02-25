@@ -7,7 +7,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.json
   def index
-    @user = current_user
+    # @user = current_user
     @ingredients = Ingredient.where(bar_id: params[:bar_id])
   end
 

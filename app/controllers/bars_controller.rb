@@ -1,12 +1,13 @@
 class BarsController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_bar, only: [:show, :edit, :update, :destroy]
-  before_action :set_user
+  before_action :set_user, except: [:index]
   # before_action :owned_bar, except: [:index, :new, :create]
   # GET /bars
   # GET /bars.json
   def index
-    @bars = Bar.where(user_id: current_user.id)
+    @bars = Bar.all
+    # where(user_id: current_user.id)
   end
 
   # GET /bars/1
@@ -70,7 +71,7 @@ class BarsController < ApplicationController
     end
 
     def set_user
-      @user = User.find(current_user.id)
+      @user = User.find(params[:user_id])
     end
 
     def owned_bar
