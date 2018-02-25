@@ -14,6 +14,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  root 'bars#index'
+  root 'users#index'
   # post 'users/:user_id/bars/:bar_id/ingredients/toggle', to: 'ingredients#toggle'
 end

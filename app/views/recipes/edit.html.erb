@@ -1,6 +1,25 @@
-<h1>Editing Recipe</h1>
-
-<%= render 'form', user: @user, bar: @bar, recipe: @recipe %>
-
-<%= link_to 'Show', user_bar_recipe_path(@user, @bar, @recipe) %> |
-<%= link_to 'Back', user_bar_recipes_path(@user, @bar, @recipe) %>
+<main>
+  <p id="notice"><%= notice %></p>
+  <header>
+    <nav class="flex-container">
+      <button class="btn flex-item">
+        <%= link_to 'Manage Bar Stock', user_bar_ingredients_path(@user,@bar) %>
+      </button>
+      <button class="btn flex-item">
+        <%= link_to 'Ingredients', user_bar_ingredients_path(@user, @bar) %>
+      </button>
+      <button class="btn flex-item">
+        <%= link_to "Back", user_bar_recipes_path(@user, @bar)%>
+      </button>
+      <button class="btn flex-item">
+        <%= link_to "Bar", user_bar_path(@user, @bar)%>
+      </button>
+    </nav>
+    <h1>Editing Recipe</h1>
+  </header>
+  <div class="container flex-container">
+    <section class="flex-item form">
+      <%= render 'form', user: @user, bar: @bar, recipe: @recipe %>
+    </section>
+  </div>
+</main>
