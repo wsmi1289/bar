@@ -2,21 +2,11 @@
   <p id="notice"><%= notice %></p>
   <header>
     <nav class="flex-container">
-      <button class="btn flex-item">
-        <%= link_to 'New Recipe', new_user_bar_recipe_path(@user, @bar, @recipe) %>
-      </button>
-      <button class="btn flex-item">
-        <%= link_to 'What can I make', possible_user_bar_recipe_path(@user, @bar, @recipes) %>
-      </button>
-      <button class="btn flex-item">
-        <%= link_to "Recipes", user_bar_recipes_path(@user, @bar) %>
-      </button>
-      <button class="btn flex-item">
-        <%= link_to "Ingredients", user_bar_ingredients_path(@user, @bar) %>
-      </button>
-      <button class="btn flex-item">
-        <%= link_to "Bar", user_bar_path(@user, @bar)%>
-      </button>
+      <%= link_to 'New Recipe', new_user_bar_recipe_path(@user, @bar, @recipe), class: "btn flex-item" %>
+      <%= link_to 'What can I make?', possible_user_bar_recipe_path(@user, @bar, @recipes), class: "btn flex-item" %>
+      <%= link_to "Recipes", user_bar_recipes_path(@user, @bar), class: "btn flex-item" %>
+      <%= link_to "Manage Bar Stock", user_bar_ingredients_path(@user, @bar), class: "btn flex-item" %>
+      <%= link_to "Bar", user_bar_path(@user, @bar), class: "btn flex-item"%>
     </nav>
     <h1>Recipes</h1>
   </header>
@@ -27,9 +17,7 @@
         <figure>
           <%= image_tag("me", size: "200x200") %>
           <figcaption data-id="<%= recipe.id %>">
-            <button class="btn flex-item">
-              <%= link_to 'Ingredients', user_bar_recipe_url(@user, @bar, recipe), method: 'get', remote: true %>
-            </button>
+            <%= link_to 'Ingredients', user_bar_recipe_url(@user, @bar, recipe), method: 'get', remote: true, class: "btn flex-item" %>
           </figcaption>
         </figure>
       </section>

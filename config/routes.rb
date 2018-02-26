@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users do
     resources :bars do
-      resources :recipe_ingredients
+      resources :recipe_ingredients do
+        get 'autocomplete_ingredient_name', on: :collection
+      end
       resources :recipes do
         get 'possible', on: :member
       end
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
   root 'users#index'
   # post 'users/:user_id/bars/:bar_id/ingredients/toggle', to: 'ingredients#toggle'
 end

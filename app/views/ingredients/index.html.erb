@@ -2,29 +2,16 @@
   <p id="notice"><%= notice %></p>
   <header>
     <nav class="flex-container">
-      <button class="btn flex-item">
-        <%= link_to 'Manage Bar Stock', user_bar_ingredients_path(@user,@bar) %>
-      </button>
-      <button class="btn flex-item">
-        <%= link_to 'New Ingredient', new_user_bar_ingredient_path(@user) %>
-      </button>
-      <button class="btn flex-item">
-        <%= link_to 'Back', user_bar_ingredients_path(@user) %>
-      </button>
+      <%= link_to 'Manage Bar Stock', user_bar_ingredients_path(@user,@bar), class: 'btn flex-item'%>
+      <%= link_to 'New Ingredient', new_user_bar_ingredient_path(@user), class: "btn flex-item"  %>
+      <%= link_to 'View All', user_bar_ingredients_path(@user), class: "btn flex-item" %>
       <span class="dropdown">
           <%= collection_select :ingredient, :type_id, Type.all, :id, :name, {prompt: "Filter By:"}, {
             data: { remote: true, url: filter_user_bar_ingredients_url}
           } %>
       </span>
-      <button class="btn flex-item">
-        <%= link_to "Recipes", user_bar_recipes_path(@user, @bar)%>
-      </button>
-      <button class="btn flex-item">
-        <%= link_to "Ingredients", user_bar_ingredients_path(@user, @bar)%>
-      </button>
-      <button class="btn flex-item">
-        <%= link_to "Bar", user_bar_path(@user, @bar)%>
-      </button>
+      <%= link_to "Recipes", user_bar_recipes_path(@user, @bar), class: "btn flex-item" %>
+      <%= link_to "Bar", user_bar_path(@user, @bar), class: "btn flex-item" %>
     </nav>
     <h1>Ingredients</h1>
   </header>

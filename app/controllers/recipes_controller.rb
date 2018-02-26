@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   # before_action :authenticate_user!
+  autocomplete :ingredient, :name, ful: true
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_action :set_user
   before_action :set_bar
