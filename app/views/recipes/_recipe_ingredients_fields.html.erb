@@ -10,5 +10,7 @@
     <%= f.text_field :quantity, id: :recipe_ingredient_quantity %>
   </div>
   <%= f.hidden_field :_destroy %>
-  <%= link_to "X", '#', onClick: "removeField(this); return false;" %>
+  <div class="field">
+    <%= link_to "X", '#', onClick: "removeField(this); return false;" %>
+  </div>
 </div>

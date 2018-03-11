@@ -15,14 +15,14 @@
     <%= form.label :name %>
     <%= form.text_field :name, id: :recipe_name %>
   </div>
-  <div class="recipe-ingredient">
+  <div class="field recipe-ingredient">
     <%= form.fields_for :recipe_ingredients, RecipeIngredient.new do |ingredients_form| %>
       <%= render 'recipes/recipe_ingredients_fields', f: ingredients_form %>
     <% end %>
     <%= link_to_add_fields("Add Ingredient", form, :recipe_ingredients, RecipeIngredient.new) %>
   </div>
 
-  <div class="field">
+  <div class="field directions-field">
     <%= form.label :directions %>
     <%= form.text_area :directions, id: :recipe_directions %>
   </div>

@@ -10,18 +10,6 @@
     <h1>Recipes</h1>
   </header>
   <div class="container flex-container">
-    <% possible_recipes.each do |recipe| %>
-      <section class="flex-item">
-        <h3><%= recipe.name %></h3>
-        <figure>
-          <%= image_tag("me", size: "200x200") %>
-          <figcaption data-id="<%= recipe.id %>">
-            <button class="btn flex-item">
-              <%= link_to 'Ingredients', user_bar_recipe_url(@user, @bar, recipe), method: 'get', remote: true %>
-            </button>
-          </figcaption>
-        </figure>
-      </section>
-    <% end -%>
+    <%= render 'recipes/recipe', possible_recipes: possible_recipes %>
   </div>
 </main>

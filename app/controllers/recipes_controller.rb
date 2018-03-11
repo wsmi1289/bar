@@ -1,13 +1,21 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!
   autocomplete :ingredient, :name, full: true
+  autocomplete :recipe, :name, full: true
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_action :set_user
   before_action :set_bar
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    if params[:search]
+      @recipes = Recipe.where(name: "#{params[:search]}").order('name')
+      respond_to do |format|
+        format.js
+      end
+    else
+      @recipes = Recipe.all
+    end
   end
 
   def possible

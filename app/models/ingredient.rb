@@ -4,7 +4,7 @@ class Ingredient < ApplicationRecord
   belongs_to :bar
   has_many :recipe_ingredients, dependent: :destroy
   has_many :recipes, through: :recipe_ingredients
-
+  scope :name_like, -> (name) { where("name=?", name)}
   def ingredient_name
     "#{name}"
   end

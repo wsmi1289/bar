@@ -4,23 +4,18 @@
     <nav class="flex-container">
       <%= link_to 'New Recipe', new_user_bar_recipe_path(@user, @bar, @recipe), class: "btn flex-item" %>
       <%= link_to 'What can I make?', possible_user_bar_recipe_path(@user, @bar, @recipes), class: "btn flex-item" %>
-      <%= link_to "Recipes", user_bar_recipes_path(@user, @bar), class: "btn flex-item" %>
       <%= link_to "Manage Bar Stock", user_bar_ingredients_path(@user, @bar), class: "btn flex-item" %>
       <%= link_to "Bar", user_bar_path(@user, @bar), class: "btn flex-item"%>
     </nav>
     <h1>Recipes</h1>
   </header>
-  <div class="container flex-container">
-    <% Recipe.all.each do |recipe| %>
-      <section class="flex-item">
-        <h3><%= recipe.name %></h3>
-        <figure>
-          <%= image_tag("me", size: "200x200") %>
-          <figcaption data-id="<%= recipe.id %>">
-            <%= link_to 'Ingredients', user_bar_recipe_url(@user, @bar, recipe), method: 'get', remote: true, class: "btn flex-item" %>
-          </figcaption>
-        </figure>
-      </section>
-    <% end -%>
+  <div class="search">
+    <%= form_tag(user_bar_recipes_path(@user), method: 'get', remote: 'true', id: 'rec-search-form') do %>
+      <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: autocomplete_recipe_name_user_bar_recipes_path} %>  
+      <%= submit_tag "Search" %>
+    <%end%>
+  </div>
+  <div class="container flex-container ingredient-container">
+    <%= render 'recipes/recipe', recipes: @recipes %>
   </div>
 </main>

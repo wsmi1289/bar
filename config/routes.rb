@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       end
       resources :recipes do
         get 'possible', on: :member
+        get 'autocomplete_recipe_name', on: :collection
       end
       resources :ingredients do
         get 'filter', on: :collection

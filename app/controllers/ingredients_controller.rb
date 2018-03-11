@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :authenticate_user!
-  autocomplete :ingredient, :name
+  autocomplete :ingredient, :name, full: true
   before_action :set_ingredient, only: [:show, :edit, :toggle, :update, :destroy]
   before_action :set_bar
   before_action :set_user
@@ -8,7 +8,14 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.json
   def index
-    @ingredients = Ingredient.where(bar_id: params[:bar_id])
+    if params[:search]
+      @ingredients = Ingredient.where(name: "#{params[:search]}").order('name')
+      respond_to do |format|
+        format.js
+      end
+    else
+      @ingredients = Ingredient.where(bar_id: params[:bar_id])
+    end
   end
 
   def filter
