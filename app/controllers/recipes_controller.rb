@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
   # GET /recipes.json
   def index
     if params[:search]
-      @recipes = Recipe.where(name: "#{params[:search]}").order('name')
+      @recipes = Recipe.where("name LIKE ?", "%#{params[:search]}%").order('name')
       respond_to do |format|
         format.js
       end
