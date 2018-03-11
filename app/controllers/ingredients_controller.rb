@@ -14,7 +14,7 @@ class IngredientsController < ApplicationController
         format.js
       end
     else
-      @ingredients = Ingredient.where(bar_id: params[:bar_id])
+      @ingredients = Ingredient.where(bar_id: params[:bar_id]).order(in_stock: :desc)
     end
   end
 

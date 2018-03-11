@@ -13,13 +13,13 @@
       <%= link_to "Bar", user_bar_path(@user, @bar), class: "btn flex-item" %>
     </nav>
     <h1>Ingredients</h1>
+    <div class="search">
+      <%= form_tag(user_bar_ingredients_path(@user), method: 'get', remote: 'true', id: 'ing-search-form') do %>
+        <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: autocomplete_ingredient_name_user_bar_recipe_ingredients_path} %>  
+        <%= submit_tag "Search" %>
+      <%end%>
+    </div>
   </header>
-  <div class="search">
-    <%= form_tag(user_bar_ingredients_path(@user), method: 'get', remote: 'true', id: 'ing-search-form') do %>
-      <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: autocomplete_ingredient_name_user_bar_recipe_ingredients_path} %>  
-      <%= submit_tag "Search" %>
-    <%end%>
-  </div>
   <div class="container flex-container ingredient-container">
     <% if current_page?(action: 'index') %>
         <%= render 'ingredients/ingredient', collection: @ingredients %>
