@@ -24,16 +24,11 @@ class IngredientsController < ApplicationController
       format.js
     end
   end
-
-  # GET /ingredients/1
-  # GET /ingredients/1.json
-  def show
-  end
   
   def toggle
     respond_to do |format|
       if @ingredient.update_attribute(:in_stock, params[:in_stock])
-        format.html { render :show, notice: 'Ingredient was successfully created.' }
+        format.html { redirect_to user_bar_ingredients_url, notice: 'Ingredient was successfully created.' }
         format.js
         format.json { render :show, status: :created, location: @ingredient }
       else
@@ -59,7 +54,7 @@ class IngredientsController < ApplicationController
 
     respond_to do |format|
       if @ingredient.save
-        format.html { render :show, notice: 'Ingredient was successfully created.' }
+        format.html { redirect_to user_bar_ingredients_url, notice: 'Ingredient was successfully created.' }
         format.json { render :show, status: :created, location: @ingredient }
       else
         format.html { render :new }
