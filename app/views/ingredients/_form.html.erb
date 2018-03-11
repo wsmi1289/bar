@@ -26,6 +26,11 @@
     <%= form.text_area :description, id: :ingredient_description %>
   </div>
 
+  <div class="field">
+    <%= form.label :avatar, "Add an image" %>
+    <%= form.file_field :avatar %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

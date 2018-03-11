@@ -1,5 +1,6 @@
 class RecipeIngredientsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
+  autocomplete :ingredient, :name
   before_action :set_recipe_ingredient, only: [:show, :edit, :update, :destroy]
   before_action :set_user
   before_action :set_bar
@@ -26,6 +27,7 @@ class RecipeIngredientsController < ApplicationController
   # POST /recipe_ingredients
   # POST /recipe_ingredients.json
   def create
+    @ingredients = Ingredient.where(bar_id: params[:bar_id], in_stock: true)
     @recipe_ingredient = RecipeIngredient.new(recipe_ingredient_params)
 
     respond_to do |format|
@@ -71,6 +73,11 @@ class RecipeIngredientsController < ApplicationController
 
     def set_user
       @user = User.find(params[:user_id])
+    end
+
+    def get_autocomplete_items(parameters)
+      items = active_record_get_autocomplete_items(parameters)
+      items = items.where(bar_id: params[:bar_id], in_stock: true)
     end
 
     def set_bar

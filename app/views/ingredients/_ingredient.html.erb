@@ -2,17 +2,13 @@
   <section class="ingredient flex-item" data-id="<%= ingredient.id %>">
     <h3><%= ingredient.name %></h3>
     <figure>
-      <%= image_tag("me", size: "150x150") %>
+      <%= image_tag(ingredient.avatar_url(:thumb).to_s) %>
       <figcaption>
         <p>
           <%= ingredient.description %>              
         </p>
-        <button class="btn flex-item">
-          <%= link_to 'Edit', edit_user_bar_ingredient_path(@user, @bar, ingredient) %>
-        </button>
-        <button class="btn flex-item">
-          <%= link_to 'Destroy', user_bar_ingredient_path(@user, @bar, ingredient), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </button>
+        <%= link_to 'Edit', edit_user_bar_ingredient_path(@user, @bar, ingredient), class: "btn flex-item" %>
+        <%= link_to 'Destroy', user_bar_ingredient_path(@user, @bar, ingredient), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn flex-item" %>
         <label class="check-container" for="in_stock">In Stock:</label>
         <%= check_box_tag('in_stock', "true", ingredient.in_stock, 
                                           data: {

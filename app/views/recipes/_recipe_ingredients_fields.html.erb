@@ -1,13 +1,16 @@
 <div class="ingredient-container">
   <div class="field">
+    <% @count=f.options[:child_index] %>
     <%= f.label :ingredient %>
-    <%= f.collection_select :ingredient_id, Ingredient.where(bar_id: params[:bar_id], in_stock: true), :id, :ingredient_name, prompt: true %>
+    <%= f.autocomplete_field :ingredient, autocomplete_ingredient_name_user_bar_recipe_ingredients_path, id_element: "#recipe_recipe_ingredients_attributes_#{@count}_ingredient_id", :scopes => [:my_ingredients]  %>
   </div>
-
+  <%= f.hidden_field :ingredient_id%>
   <div class="field">
     <%= f.label :quantity %>
     <%= f.text_field :quantity, id: :recipe_ingredient_quantity %>
   </div>
   <%= f.hidden_field :_destroy %>
-  <%= link_to "[Remove Task]", '#', onClick: "removeField(this); return false;" %>
+  <div class="field">
+    <%= link_to "X", '#', onClick: "removeField(this); return false;" %>
+  </div>
 </div>
