@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-  # before_action :authenticate_user!
-  autocomplete :ingredient, :name, ful: true
+  before_action :authenticate_user!
+  autocomplete :ingredient, :name, full: true
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_action :set_user
   before_action :set_bar
@@ -87,6 +87,6 @@ class RecipesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:id, :name, :directions, recipe_ingredients_attributes:[:id, :quantity, :ingredient_id, :recipe_id, :_destroy])
+      params.require(:recipe).permit(:id, :name, :directions, :avatar, recipe_ingredients_attributes:[:id, :quantity, :ingredient_id, :recipe_id, :_destroy])
     end
 end

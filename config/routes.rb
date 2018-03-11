@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :types
   devise_for :users
+  resources :types
   resources :users do
     resources :bars do
       resources :recipe_ingredients do
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  root 'users#index'
+  
+  root 'bars#index'
   # post 'users/:user_id/bars/:bar_id/ingredients/toggle', to: 'ingredients#toggle'
 end

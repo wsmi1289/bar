@@ -1,5 +1,5 @@
 class BarsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_bar, only: [:show, :edit, :update, :destroy]
   before_action :set_user, except: [:index]
   # before_action :owned_bar, except: [:index, :new, :create]
@@ -7,7 +7,10 @@ class BarsController < ApplicationController
   # GET /bars.json
   def index
     @bars = Bar.all
-    # where(user_id: current_user.id)
+    @user = current_user
+    if @bars.exists?
+      redirect_to user_bar_path(@user, 1)
+    end
   end
 
   # GET /bars/1

@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   autocomplete :ingredient, :name
   before_action :set_ingredient, only: [:show, :edit, :toggle, :update, :destroy]
   before_action :set_bar
@@ -100,6 +100,6 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredient).permit(:id, :name, :description, :in_stock, :type_id)
+      params.require(:ingredient).permit(:id, :name, :description, :in_stock, :type_id, :avatar)
     end
 end

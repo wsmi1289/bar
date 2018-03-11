@@ -2,7 +2,7 @@
   <section class="ingredient flex-item" data-id="<%= ingredient.id %>">
     <h3><%= ingredient.name %></h3>
     <figure>
-      <%= image_tag("me", size: "150x150") %>
+      <%= image_tag(ingredient.avatar_url(:thumb).to_s) %>
       <figcaption>
         <p>
           <%= ingredient.description %>              

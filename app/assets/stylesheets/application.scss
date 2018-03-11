@@ -55,22 +55,23 @@ a {
 
 	}
 
-}
+	.check-container {
+		margin-top: 15px;
+		font-size: 1.2em;
+	}
 
-.check-container {
-	font-size: 1.2em;
-}
+	input[type='checkbox'] {
+		-webkit-appearance: none;
+		width: 30px;
+		height: 30px;
+		background: white;
+		border-radius: 5px;
+		border: 2px solid #555;
+		background: rgba(255, 0, 0, .4)
+	}
 
-input[type='checkbox'] {
-	-webkit-appearance: none;
-	width: 30px;
-	height: 30px;
-	background: white;
-	border-radius: 5px;
-	border: 2px solid #555;
-	background: rgba(255, 0, 0, .4)
-}
+	input[type='checkbox']:checked {
+		background: rgba(0, 169, 0, .4);
+	}
 
-input[type='checkbox']:checked {
-	background: rgba(0, 169, 0, .4);
 }

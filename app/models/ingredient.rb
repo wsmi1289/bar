@@ -1,4 +1,5 @@
 class Ingredient < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
   # has_one :type
   belongs_to :bar
   has_many :recipe_ingredients, dependent: :destroy

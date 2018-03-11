@@ -27,6 +27,11 @@
     <%= form.text_area :directions, id: :recipe_directions %>
   </div>
 
+  <div class="field">
+    <%= form.label :avatar, "Add an image" %>
+    <%= form.file_field :avatar %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

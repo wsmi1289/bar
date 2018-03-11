@@ -6,6 +6,8 @@
       <%= link_to "Recipes", user_bar_recipes_path(@user, @bar), class: 'btn flex-item'%>
       <%= link_to "Ingredients", user_bar_ingredients_path(@user, @bar), class: 'btn flex-item'%>
       <%= link_to "Bar", user_bar_path(@user, @bar), class: 'btn flex-item'%>
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
     </nav>
     <h1><%= @bar.name %></h1>
   </header>
@@ -15,7 +17,7 @@
         <section class="flex-item">
           <h3><%= ingredient.name %></h3>
           <figure>
-            <%= image_tag("me", size: "200x200") %>
+            <%= image_tag(ingredient.avatar_url(:thumb).to_s) %>
             <figcaption>
               <%= ingredient.description %>
             </figcaption>
