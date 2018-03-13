@@ -26,20 +26,13 @@ class BarsController < ApplicationController
       @ingredients = Ingredient.where(bar_id: params[:bar_id]).order(in_stock: :desc)
     end
   end
+  
   def possible
     @recipe_ingredients = RecipeIngredient.where(ingredient_id: params[:ingredient_id]).pluck(:recipe_id)
     @recipe_list = @recipe_ingredients.each { |r| Recipe.includes(:r)}
-    puts '************************ list'
-    puts @recipe_list
-
     @recipes = @recipe_list.collect {|r| Recipe.find(r)}
-        puts '************************ recipe'
-    puts @recipes
-    # respond_to do |format|
-    #   format.js
-    # end
-    # Recipe.includes(:recipe_ingredients).where(recipe_ingredient: params[:ingredient_id])
   end
+
   # GET /bars/new
   def new
     @bar = current_user.bars.new
