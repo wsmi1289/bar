@@ -4,9 +4,6 @@ class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :toggle, :update, :destroy]
   before_action :set_bar
   before_action :set_user
-  # before_action :owned_by_bar
-  # GET /ingredients
-  # GET /ingredients.json
   def index
     if params[:search]
       @ingredients = Ingredient.where("name LIKE ?", "%#{params[:search]}%").order('name')

@@ -1,22 +1,11 @@
 <main>
   <p id="notice"><%= notice %></p>
   <header>
-    <nav class="flex-container">
-      <%= link_to 'New Ingredient', new_user_bar_ingredient_path(@user), class: "btn flex-item"  %>
-      <%= link_to 'View All', user_bar_ingredients_path(@user), class: "btn flex-item" %>
-      <span class="dropdown">
-          <%= collection_select :ingredient, :type_id, Type.all, :id, :name, {prompt: "Filter By:"}, {
-            data: { remote: true, url: filter_user_bar_ingredients_url}
-          } %>
-      </span>
-      <%= link_to "Recipes", user_bar_recipes_path(@user, @bar), class: "btn flex-item" %>
-      <%= link_to "Bar", user_bar_path(@user, @bar), class: "btn flex-item" %>
-    </nav>
     <h1>Ingredients</h1>
     <div class="search">
       <%= form_tag(user_bar_ingredients_path(@user), method: 'get', remote: 'true', id: 'ing-search-form') do %>
-        <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: autocomplete_ingredient_name_user_bar_recipe_ingredients_path} %>  
-        <%= submit_tag "Search" %>
+        <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: autocomplete_ingredient_name_user_bar_recipe_ingredients_path}, class: 'search-input' %>  
+        <%= submit_tag "Search", class: 'btn-search' %>
       <%end%>
     </div>
   </header>

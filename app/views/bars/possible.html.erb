@@ -1,0 +1,19 @@
+<main>
+  <p id="notice"><%= notice %></p>
+  <header>
+    <h1>Recipes</h1>
+  </header>
+  <div class="container flex-container">
+    <% @recipes.each do |recipe| %>
+      <section class="flex-item">
+        <h3><%= recipe.name %></h3>
+        <figure>
+          <%= image_tag(recipe.avatar_url(:thumb).to_s) %>
+          <figcaption data-id="<%= recipe.id %>">
+            
+          </figcaption>
+        </figure>
+      </section>
+    <% end -%>
+  </div>
+</main>

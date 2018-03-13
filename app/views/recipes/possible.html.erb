@@ -1,12 +1,6 @@
 <main>
   <p id="notice"><%= notice %></p>
   <header>
-    <nav class="flex-container">
-      <%= link_to 'New Recipe', new_user_bar_recipe_path(@user, @bar, @recipe), class: 'btn flex-item' %>
-      <%= link_to "Back to Recipes", user_bar_recipes_path(@user, @bar), class: 'btn flex-item' %>
-      <%= link_to "Ingredients", user_bar_ingredients_path(@user, @bar), class: 'btn flex-item' %>
-      <%= link_to "Bar", user_bar_path(@user, @bar), class: 'btn flex-item'%>
-    </nav>
     <h1>Recipes</h1>
   </header>
   <div class="container flex-container">

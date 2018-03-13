@@ -11,6 +11,9 @@
   </head>
 
   <body>
+    <% if !current_page?(new_user_session_url) %>
+      <%= render 'layouts/nav' %>
+    <% end -%>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

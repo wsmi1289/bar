@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require normalize-rails
  *= require jquery-ui
  *= require_tree .
  *= require_self
@@ -28,36 +29,46 @@ body, input {
 	font-size: 1em;
 }
 
+a {
+	text-decoration: none;
+}
+
+nav {
+	margin-top: 1.5em;
+}
+
 header {
-	// border: 1px solid black;
-	width: 100%;
-	margin: 0 0 5% 0;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-bottom: 1.5em;
 
 	h1 {
+		margin: 0;
 		font-size: 4em;
-		text-align: center;
-		margin: 5% 0 0 0;
-	}
-
-	#ing-search-form {
-		height: 4em;
 	}
 
 	.search {
-		margin: 0 10%;
+		margin-top: 1.5em;
+		align-items: center;
+		// font-size: 1em;
+		line-height: 1.8;
 
 		#search {
-			width: 20%;
-			// height: 50px;
-			font-size: 3em;
+			width: 100%;
+			padding: 0 1em;
+			border-radius: 5px;
+		}
+
+		.btn-search {
+			margin-top: .5em;
+			align-items: center;
+			width: 100%;
+			border-radius: 5px;
 		}
 
 	}
 
-}
-
-a {
-	text-decoration: none;
 }
 
 .btn {
@@ -83,20 +94,16 @@ a {
 			box-shadow: 4px 4px rgba(169, 169, 169, .9);
 		}
 
-		h3 {
-			font-size: 1.5em;
-		}
-
-		p {
-			font-weight: 300;
-			font-size: .7em;
-		}
-
 	}
 
 	.check-container {
-		margin-top: 15px;
+		margin-top: 10%;
 		font-size: 1.2em;
+
+		label {
+			vertical-align: 35%;
+		}
+
 	}
 
 	input[type='checkbox'] {

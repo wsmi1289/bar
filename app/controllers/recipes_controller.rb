@@ -18,9 +18,10 @@ class RecipesController < ApplicationController
     end
   end
 
-  def possible
-    @ingredients = RecipeIngredient.where(recipe_id: params[:id])
-  end
+  # def possible
+  #   # @ingredients = RecipeIngredient.where(recipe_id: params[:id])
+  #   # @recipes = Recipe.includes(:ingredient).where(ingredient_id: params[:id])
+  # end
   # GET /recipes/1
   # GET /recipes/1.json
   def show

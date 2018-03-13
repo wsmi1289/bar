@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :types
   resources :users do
     resources :bars do
+      get 'possible', on: :member
       resources :recipe_ingredients do
         get 'autocomplete_ingredient_name', on: :collection
       end

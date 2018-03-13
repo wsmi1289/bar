@@ -1,12 +1,17 @@
 <nav class="flex-container">
+  <% if current_page?(user_bar_recipes_url(@user, @bar)) %>
+    <%= link_to 'New Recipe', new_user_bar_recipe_path(@user), class: "btn flex-item"  %>
+    <%= link_to 'What can I make?', possible_user_bar_recipe_path(@user, @bar, @recipes), class: "btn flex-item" %>
+  <%end%>
   <%= link_to 'Manage Bar Stock', user_bar_ingredients_path(@user,@bar), class: 'btn flex-item'%>
-  <%= link_to 'New Ingredient', new_user_bar_ingredient_path(@user), class: "btn flex-item"  %>
-  <%= link_to 'View All', user_bar_ingredients_path(@user), class: "btn flex-item" %>
-  <span class="dropdown">
+  <% if current_page?(user_bar_ingredients_url(@user, @bar)) %>
+    <%= link_to 'New Ingredient', new_user_bar_ingredient_path(@user), class: "btn flex-item"  %>
+    <span class="dropdown">
       <%= collection_select :ingredient, :type_id, Type.all, :id, :name, {prompt: "Filter By:"}, {
         data: { remote: true, url: filter_user_bar_ingredients_url}
       } %>
-  </span>
+    </span>
+  <%end%>
   <%= link_to "Recipes", user_bar_recipes_path(@user, @bar), class: "btn flex-item" %>
   <%= link_to "Bar", user_bar_path(@user, @bar), class: "btn flex-item" %>
 </nav>
