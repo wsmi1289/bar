@@ -10,7 +10,7 @@ module ApplicationHelper
     link_to_func(name,
       h("add_fields(this,
         \"#{association}\", \"#{escape_javascript(fields)}\");return false;"),
-      class: 'btn btn-success')
+      class: 'btn flex-item')
   end
 
   def link_to_func(name, js, opts={})

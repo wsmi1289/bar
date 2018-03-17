@@ -1,25 +1,22 @@
 <main>
-  <p id="notice"><%= notice %></p>
   <header>
-    <nav class="flex-container">
-      <%= link_to 'Manage Bar Stock', user_bar_ingredients_path(@user,@bar), class: 'btn flex-item' %>
-      <%= link_to "Recipes", user_bar_recipes_path(@user, @bar), class: 'btn flex-item'%>
-      <%= link_to "Ingredients", user_bar_ingredients_path(@user, @bar), class: 'btn flex-item'%>
-      <%= link_to "Bar", user_bar_path(@user, @bar), class: 'btn flex-item'%>
-      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-
-    </nav>
     <h1><%= @bar.name %></h1>
+    <div class="search">
+      <%= form_tag(user_bar_ingredients_path(@user, @bar), method: 'get', remote: 'true', id: 'ing-search-form') do %>
+        <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: autocomplete_ingredient_name_user_bar_recipe_ingredients_path(bar_id: @bar)}, class: 'search-input' %>  
+        <%= submit_tag "Search", class: 'btn-search' %>
+      <%end%>
+    </div>
   </header>
-  <div class="container flex-container">
+  <div class="container flex-container ingredient-container">
     <% @bar.ingredients.each do |ingredient| %>
       <% if ingredient.in_stock %>
         <section class="flex-item">
           <h3><%= ingredient.name %></h3>
           <figure>
             <%= image_tag(ingredient.avatar_url(:thumb).to_s) %>
-            <figcaption>
-              <%= ingredient.description %>
+            <figcaption data-id="<%= ingredient.id %>">
+              <%= link_to 'Find Drinks', possible_user_bar_path(@bar, ingredient_id: ingredient), method: 'get', class: 'btn flex-item' %>
             </figcaption>
           </figure>
         </section>

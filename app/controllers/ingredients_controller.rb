@@ -4,17 +4,14 @@ class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :toggle, :update, :destroy]
   before_action :set_bar
   before_action :set_user
-  # before_action :owned_by_bar
-  # GET /ingredients
-  # GET /ingredients.json
   def index
     if params[:search]
-      @ingredients = Ingredient.where(name: "#{params[:search]}").order('name')
+      @ingredients = Ingredient.where("name LIKE ?", "%#{params[:search]}%").order('name')
       respond_to do |format|
         format.js
       end
     else
-      @ingredients = Ingredient.where(bar_id: params[:bar_id])
+      @ingredients = Ingredient.where(bar_id: params[:bar_id]).order(in_stock: :desc)
     end
   end
 
@@ -24,16 +21,11 @@ class IngredientsController < ApplicationController
       format.js
     end
   end
-
-  # GET /ingredients/1
-  # GET /ingredients/1.json
-  def show
-  end
   
   def toggle
     respond_to do |format|
       if @ingredient.update_attribute(:in_stock, params[:in_stock])
-        format.html { render :show, notice: 'Ingredient was successfully created.' }
+        format.html { redirect_to user_bar_ingredients_url, notice: 'Ingredient was successfully created.' }
         format.js
         format.json { render :show, status: :created, location: @ingredient }
       else
@@ -59,7 +51,7 @@ class IngredientsController < ApplicationController
 
     respond_to do |format|
       if @ingredient.save
-        format.html { render :show, notice: 'Ingredient was successfully created.' }
+        format.html { redirect_to user_bar_ingredients_url, notice: 'Ingredient was successfully created.' }
         format.json { render :show, status: :created, location: @ingredient }
       else
         format.html { render :new }

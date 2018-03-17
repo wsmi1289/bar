@@ -1,6 +1,7 @@
 class BarsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_bar, only: [:show, :edit, :update, :destroy]
+  autocomplete :ingredient, :name
+  before_action :set_bar, only: [:show, :possible, :edit, :update, :destroy]
   before_action :set_user, except: [:index]
   # before_action :owned_bar, except: [:index, :new, :create]
   # GET /bars
@@ -16,6 +17,20 @@ class BarsController < ApplicationController
   # GET /bars/1
   # GET /bars/1.json
   def show
+    if params[:search]
+      @ingredients = Ingredient.where("name LIKE ?", "%#{params[:search]}%").order('name')
+      respond_to do |format|
+        format.js
+      end
+    else
+      @ingredients = Ingredient.where(bar_id: params[:bar_id]).order(in_stock: :desc)
+    end
+  end
+  
+  def possible
+    @recipe_ingredients = RecipeIngredient.where(ingredient_id: params[:ingredient_id]).pluck(:recipe_id)
+    @recipe_list = @recipe_ingredients.each { |r| Recipe.includes(:r)}
+    @recipes = @recipe_list.collect {|r| Recipe.find(r)}
   end
 
   # GET /bars/new

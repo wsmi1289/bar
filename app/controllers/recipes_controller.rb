@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
   # GET /recipes.json
   def index
     if params[:search]
-      @recipes = Recipe.where(name: "#{params[:search]}").order('name')
+      @recipes = Recipe.where("name LIKE ?", "%#{params[:search]}%").order('name')
       respond_to do |format|
         format.js
       end
@@ -18,9 +18,10 @@ class RecipesController < ApplicationController
     end
   end
 
-  def possible
-    @ingredients = RecipeIngredient.where(recipe_id: params[:id])
-  end
+  # def possible
+  #   # @ingredients = RecipeIngredient.where(recipe_id: params[:id])
+  #   # @recipes = Recipe.includes(:ingredient).where(ingredient_id: params[:id])
+  # end
   # GET /recipes/1
   # GET /recipes/1.json
   def show

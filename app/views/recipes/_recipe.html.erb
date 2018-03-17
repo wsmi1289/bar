@@ -4,9 +4,7 @@
     <figure>
       <%= image_tag(recipe.avatar_url(:thumb).to_s) %>
       <figcaption data-id="<%= recipe.id %>">
-        <button class="btn flex-item">
-          <%= link_to 'Ingredients', user_bar_recipe_url(@user, @bar, recipe), method: 'get', remote: true %>
-        </button>
+        <%= link_to 'Ingredients', user_bar_recipe_url(@user, @bar, recipe), method: 'get', remote: true, class: 'btn flex-item' %>
       </figcaption>
     </figure>
   </section>

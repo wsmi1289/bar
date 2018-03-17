@@ -9,15 +9,15 @@ class Ingredient < ApplicationRecord
     "#{name}"
   end
 
-  def self.search(term)
-    if term
-      where('LOWER(name) LIKE :term', term: "%#{term.downcase}%")
-    else
-      where(bar_id: @bar)
-    end
-  end
+  # def self.search(term)
+  #   if term
+  #     where('LOWER(name) LIKE :term', term: "%#{term.downcase}%")
+  #   else
+  #     where(bar_id: @bar)
+  #   end
+  # end
 
-  def type_name(type_id)
-    Type.find(type_id).name
-  end
+  # def type_name(type_id)
+  #   Type.find(type_id).name
+  # end
 end

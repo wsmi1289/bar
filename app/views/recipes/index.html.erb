@@ -1,20 +1,14 @@
 <main>
-  <p id="notice"><%= notice %></p>
   <header>
-    <nav class="flex-container">
-      <%= link_to 'New Recipe', new_user_bar_recipe_path(@user, @bar, @recipe), class: "btn flex-item" %>
-      <%= link_to 'What can I make?', possible_user_bar_recipe_path(@user, @bar, @recipes), class: "btn flex-item" %>
-      <%= link_to "Manage Bar Stock", user_bar_ingredients_path(@user, @bar), class: "btn flex-item" %>
-      <%= link_to "Bar", user_bar_path(@user, @bar), class: "btn flex-item"%>
-    </nav>
     <h1>Recipes</h1>
+    <div class="search">
+      <%= form_tag(user_bar_recipes_path(@user), method: 'get', remote: 'true', id: 'rec-search-form') do %>
+        <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: autocomplete_recipe_name_user_bar_recipes_path}, class: 'search-input' %>  
+        <%= submit_tag "Search", class: 'btn-search' %>
+      <%end%>
+    </div>
   </header>
-  <div class="search">
-    <%= form_tag(user_bar_recipes_path(@user), method: 'get', remote: 'true', id: 'rec-search-form') do %>
-      <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: autocomplete_recipe_name_user_bar_recipes_path} %>  
-      <%= submit_tag "Search" %>
-    <%end%>
-  </div>
+
   <div class="container flex-container ingredient-container">
     <%= render 'recipes/recipe', recipes: @recipes %>
   </div>

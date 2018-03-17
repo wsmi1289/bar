@@ -4,24 +4,9 @@ class RecipeIngredientsController < ApplicationController
   before_action :set_recipe_ingredient, only: [:show, :edit, :update, :destroy]
   before_action :set_user
   before_action :set_bar
-  # GET /recipe_ingredients
-  # GET /recipe_ingredients.json
-  def index
-    @recipe_ingredients = RecipeIngredient.all
-  end
 
-  # GET /recipe_ingredients/1
-  # GET /recipe_ingredients/1.json
-  def show
-  end
-
-  # GET /recipe_ingredients/new
   def new
     @recipe_ingredient = RecipeIngredient.new
-  end
-
-  # GET /recipe_ingredients/1/edit
-  def edit
   end
 
   # POST /recipe_ingredients
@@ -32,24 +17,10 @@ class RecipeIngredientsController < ApplicationController
 
     respond_to do |format|
       if @recipe_ingredient.save
-        format.html { render :show, notice: 'Recipe ingredient was successfully created.' }
-        format.json { render :show, status: :created, location: @recipe_ingredient }
+        format.html { redirect_to user_bar_recipes_path, notice: 'Recipe ingredient was successfully created.' }
+        format.json { redirect_to user_bar_recipes_path, status: :created, location: @recipe_ingredient }
       else
-        format.html { render :new }
-        format.json { render json: @recipe_ingredient.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /recipe_ingredients/1
-  # PATCH/PUT /recipe_ingredients/1.json
-  def update
-    respond_to do |format|
-      if @recipe_ingredient.update(recipe_ingredient_params)
-        format.html { render :show, notice: 'Recipe ingredient was successfully updated.' }
-        format.json { render :show, status: :ok, location: @recipe_ingredient }
-      else
-        format.html { render :edit }
+        format.html { redirect_to user_bar_recipes_path }
         format.json { render json: @recipe_ingredient.errors, status: :unprocessable_entity }
       end
     end

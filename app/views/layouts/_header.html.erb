@@ -1,0 +1,10 @@
+<header>
+  <p id="notice"><%= notice %></p>
+  <h1>Recipes</h1>
+  <div class="search">
+    <%= form_tag(user_bar_recipes_path(@user), method: 'get', remote: 'true', id: 'rec-search-form') do %>
+      <%= text_field_tag :search, params[:search], class: "search-query", placeholder: "Search", type: "search", data: {autocomplete: autocomplete_recipe_name_user_bar_recipes_path} %>  
+      <%= submit_tag "Search" %>
+    <%end%>
+  </div>
+</header>
