@@ -1,5 +1,4 @@
 <main>
-  <p id="notice"><%= notice %></p>
   <header>
     <h1><%= @bar.name %></h1>
     <div class="search">
@@ -17,10 +16,7 @@
           <figure>
             <%= image_tag(ingredient.avatar_url(:thumb).to_s) %>
             <figcaption data-id="<%= ingredient.id %>">
-              <button class="btn flex-item">
-                <%= link_to 'Find Drinks', possible_user_bar_path(@bar, ingredient_id: ingredient), method: 'get' %>
-              </button>
-              <%= ingredient.description %>
+              <%= link_to 'Find Drinks', possible_user_bar_path(@bar, ingredient_id: ingredient), method: 'get', class: 'btn flex-item' %>
             </figcaption>
           </figure>
         </section>

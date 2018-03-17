@@ -19,7 +19,7 @@
     <%= form.fields_for :recipe_ingredients, RecipeIngredient.new do |ingredients_form| %>
       <%= render 'recipes/recipe_ingredients_fields', f: ingredients_form %>
     <% end %>
-    <%= link_to_add_fields("Add Ingredient", form, :recipe_ingredients, RecipeIngredient.new) %>
+    <%= link_to_add_fields("Add Ingredient", form, :recipe_ingredients, RecipeIngredient.new)%>
   </div>
 
   <div class="field directions-field">
