@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   autocomplete :ingredient, :name, full: true
   autocomplete :recipe, :name, full: true
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
@@ -33,6 +33,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/new
   def new
+    @ingredients = Ingredient.where(bar_id: params[:bar_id])
     @recipe = Recipe.new
   end
 

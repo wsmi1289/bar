@@ -1,5 +1,5 @@
 class BarsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   autocomplete :ingredient, :name
   before_action :set_bar, only: [:show, :possible, :edit, :update, :destroy]
   before_action :set_user, except: [:index]

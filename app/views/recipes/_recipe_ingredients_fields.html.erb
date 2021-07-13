@@ -1,8 +1,12 @@
 <div class="ingredient-container">
   <div class="field">
-    <% @count=f.options[:child_index] %>
-    <%= f.label :ingredient %>
-    <%= f.autocomplete_field :ingredient, autocomplete_ingredient_name_user_bar_recipe_ingredients_path, id_element: "#recipe_recipe_ingredients_attributes_#{@count}_ingredient_id", :scopes => [:my_ingredients]  %>
+    <label for="ingredients-list">Choose an Ingredient</label>
+    <input list="ingredients" id="ingredients-list" name="ingredients-list" />
+    <datalist id="ingredients">
+      <% @ingredients.each do |ingredient| %>
+        <option value="<%= ingredient.name %>"></option>
+      <% end %>
+    </datalist>
   </div>
   <%= f.hidden_field :ingredient_id%>
   <div class="field">
